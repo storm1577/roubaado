@@ -168,52 +168,74 @@ MainTab:AddDropdown({
     end
 })
 
--- Loop principal do farm
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+-- ESTADOS
+getgenv().FarmMode = "Ossos"
+getgenv().AutoFarm = false
+
+-- LOOP FARM
 task.spawn(function()
-    while task.wait(0.2) do
-        if not FarmEnabled then continue end -- se desligado, pula
+    while true do
+        if getgenv().AutoFarm then
+            pcall(function()
+                local char = LocalPlayer.Character
+                if not char then return end
 
-        local player = game.Players.LocalPlayer
-        local char = player.Character
-        local root = char and char:FindFirstChild("HumanoidRootPart")
-        if not root then continue end
+                local root = char:FindFirstChild("HumanoidRootPart")
+                if not root then return end
 
-        -- FARM OSSOS (NPCs do Castelo Assombrado)
-        if FarmMode == "Ossos" then
-            for _, mob in pairs(workspace.Enemies:GetChildren()) do
-                local hrp = mob:FindFirstChild("HumanoidRootPart")
-                local hum = mob:FindFirstChild("Humanoid")
-                if hrp and hum and hum.Health > 0 then
-                    if mob.Name:lower():find("possessed") or mob.Name:lower():find("reaper") then
-                        -- Teleporta o player acima do NPC
-                        root.CFrame = hrp.CFrame * CFrame.new(0, 10, 0)
-                        break -- vai para o primeiro NPC encontrado
+                -------------------------------------------------
+                -- FARM OSSOS
+                -------------------------------------------------
+                if getgenv().FarmMode == "Ossos" then
+                    for _, mob in pairs(workspace.Enemies:GetChildren()) do
+                        local hrp = mob:FindFirstChild("HumanoidRootPart")
+                        local hum = mob:FindFirstChild("Humanoid")
+
+                        if hrp and hum and hum.Health > 0 then
+                            local name = mob.Name:lower()
+
+                            if name:find("possessed") or name:find("reaper") then
+                                hrp.CFrame = root.CFrame * CFrame.new(0, 5, -12)
+                                hrp.Velocity = Vector3.zero
+                                hrp.RotVelocity = Vector3.zero
+                            end
+                        end
                     end
                 end
-            end
-        end
 
-        -- FARM NEAREST (NPC mais próximo)
-        if FarmMode == "Nearest" then
-            local closest = nil
-            local dist = math.huge
+                -------------------------------------------------
+                -- FARM NEAREST
+                -------------------------------------------------
+                if getgenv().FarmMode == "Nearest" then
+                    local closest = nil
+                    local dist = math.huge
 
-            for _, mob in pairs(workspace.Enemies:GetChildren()) do
-                local hrp = mob:FindFirstChild("HumanoidRootPart")
-                local hum = mob:FindFirstChild("Humanoid")
-                if hrp and hum and hum.Health > 0 then
-                    local magnitude = (root.Position - hrp.Position).Magnitude
-                    if magnitude < dist then
-                        dist = magnitude
-                        closest = hrp
+                    for _, mob in pairs(workspace.Enemies:GetChildren()) do
+                        local hrp = mob:FindFirstChild("HumanoidRootPart")
+                        local hum = mob:FindFirstChild("Humanoid")
+
+                        if hrp and hum and hum.Health > 0 then
+                            local magnitude = (root.Position - hrp.Position).Magnitude
+                            if magnitude < dist then
+                                dist = magnitude
+                                closest = hrp
+                            end
+                        end
+                    end
+
+                    if closest then
+                        closest.CFrame = root.CFrame * CFrame.new(0, 5, -12)
+                        closest.Velocity = Vector3.zero
+                        closest.RotVelocity = Vector3.zero
                     end
                 end
-            end
 
-            if closest then
-                root.CFrame = closest.CFrame * CFrame.new(0, 10, 0)
-            end
+            end)
         end
+        task.wait(0.12)
     end
 end)
 --========================
