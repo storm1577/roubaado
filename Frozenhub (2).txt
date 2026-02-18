@@ -139,105 +139,106 @@ local MainTab = window:CreateTab({
     Subtitle = "Tudo que você precisa",
     Icon = "rbxassetid://92602807830976" -- coloque seu ícone
 })
+-- =========================
+-- FARM REAL FUNCIONAL
+-- =========================
 
--- Variáveis de controle
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
 local FarmEnabled = false
-local FarmMode = "Ossos" -- padrão
+local FarmMode = "Ossos"
 
--- Toggle (ligar/desligar farm)
+-- UI CONECTADA CORRETAMENTE
 MainTab:AddToggle({
     Name = "Ativar Farm",
     StartingState = false,
     Callback = function(state)
         FarmEnabled = state
-        print("Farm ativado:", state)
     end
 })
 
--- Dropdown para escolher o tipo de farm
 MainTab:AddDropdown({
     Name = "Modo de Farm",
-    Options = {"Farm Ossos", "Farm Nearest"},
-    Callback = function(option)
-        if option == "Farm Ossos" then
-            FarmMode = "Ossos"
-        elseif option == "Farm Nearest" then
-            FarmMode = "Nearest"
-        end
-        print("Modo selecionado:", FarmMode)
+    Options = {"Ossos", "Nearest"},
+    StartingOption = "Ossos",
+    Callback = function(opt)
+        FarmMode = opt
     end
 })
-
-local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
-
--- ESTADOS
-getgenv().FarmMode = "Ossos"
-getgenv().AutoFarm = false
 
 -- LOOP FARM
 task.spawn(function()
-    while true do
-        if getgenv().AutoFarm then
-            pcall(function()
-                local char = LocalPlayer.Character
-                if not char then return end
+    while task.wait(0.1) do
+        if not FarmEnabled then continue end
 
-                local root = char:FindFirstChild("HumanoidRootPart")
-                if not root then return end
+        pcall(function()
+            local char = LocalPlayer.Character
+            if not char then return end
 
-                -------------------------------------------------
-                -- FARM OSSOS
-                -------------------------------------------------
-                if getgenv().FarmMode == "Ossos" then
-                    for _, mob in pairs(workspace.Enemies:GetChildren()) do
-                        local hrp = mob:FindFirstChild("HumanoidRootPart")
-                        local hum = mob:FindFirstChild("Humanoid")
+            local root = char:FindFirstChild("HumanoidRootPart")
+            if not root then return end
 
-                        if hrp and hum and hum.Health > 0 then
-                            local name = mob.Name:lower()
+            -------------------------------------------------
+            -- OSSOS (FLUTUA + BRING)
+            -------------------------------------------------
+            if FarmMode == "Ossos" then
+                for _, mob in pairs(workspace.Enemies:GetChildren()) do
+                    local hrp = mob:FindFirstChild("HumanoidRootPart")
+                    local hum = mob:FindFirstChild("Humanoid")
 
-                            if name:find("possessed") or name:find("reaper") then
-                                hrp.CFrame = root.CFrame * CFrame.new(0, 5, -12)
-                                hrp.Velocity = Vector3.zero
-                                hrp.RotVelocity = Vector3.zero
-                            end
+                    if hrp and hum and hum.Health > 0 then
+                        local name = mob.Name:lower()
+
+                        if name:find("possessed") or name:find("reaper") then
+                            -- FLUTUAR EM CIMA
+                            root.CFrame = hrp.CFrame * CFrame.new(0, 12, 0)
+
+                            -- BRING STACK
+                            hrp.CFrame = root.CFrame * CFrame.new(0, -6, -10)
+                            hrp.Velocity = Vector3.zero
+                            hrp.RotVelocity = Vector3.zero
+                        end
+                    end
+                end
+            end
+
+            -------------------------------------------------
+            -- NEAREST (FLUTUA + BRING)
+            -------------------------------------------------
+            if FarmMode == "Nearest" then
+                local closest = nil
+                local dist = math.huge
+
+                for _, mob in pairs(workspace.Enemies:GetChildren()) do
+                    local hrp = mob:FindFirstChild("HumanoidRootPart")
+                    local hum = mob:FindFirstChild("Humanoid")
+
+                    if hrp and hum and hum.Health > 0 then
+                        local magnitude = (root.Position - hrp.Position).Magnitude
+                        if magnitude < dist then
+                            dist = magnitude
+                            closest = mob
                         end
                     end
                 end
 
-                -------------------------------------------------
-                -- FARM NEAREST
-                -------------------------------------------------
-                if getgenv().FarmMode == "Nearest" then
-                    local closest = nil
-                    local dist = math.huge
+                if closest then
+                    local hrp = closest.HumanoidRootPart
 
-                    for _, mob in pairs(workspace.Enemies:GetChildren()) do
-                        local hrp = mob:FindFirstChild("HumanoidRootPart")
-                        local hum = mob:FindFirstChild("Humanoid")
+                    -- FLUTUAR
+                    root.CFrame = hrp.CFrame * CFrame.new(0, 12, 0)
 
-                        if hrp and hum and hum.Health > 0 then
-                            local magnitude = (root.Position - hrp.Position).Magnitude
-                            if magnitude < dist then
-                                dist = magnitude
-                                closest = hrp
-                            end
-                        end
-                    end
-
-                    if closest then
-                        closest.CFrame = root.CFrame * CFrame.new(0, 5, -12)
-                        closest.Velocity = Vector3.zero
-                        closest.RotVelocity = Vector3.zero
-                    end
+                    -- BRING
+                    hrp.CFrame = root.CFrame * CFrame.new(0, -6, -10)
+                    hrp.Velocity = Vector3.zero
+                    hrp.RotVelocity = Vector3.zero
                 end
-
-            end)
-        end
-        task.wait(0.12)
+            end
+        end)
     end
 end)
+
 --========================
 -- TELEPORT TAB (COM TRAVEL)
 --=d=======================
