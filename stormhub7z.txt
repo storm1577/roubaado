@@ -1,7 +1,7 @@
 local WindUI = (loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua")))();
 local Window = WindUI:CreateWindow({
-    Title = "ECLIPSE LIXO DEOBF BY ARAUJO",
-    Author = "By 1x1x1x1x1x1 And David Baszucki",
+    Title = "Stormx7roludo",
+    Author = "Eu mermo",
     Folder = "Eclipse Lunar Gen4",
     Size = UDim2.fromOffset(520, 300),
     Transparent = true,
@@ -10365,3 +10365,4 @@ spawn(function()
 		end);
 	end;
 end);
+
