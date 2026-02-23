@@ -1,0 +1,552 @@
+-- ts file was generated at discord.gg/25ms
+
+local fenv = getfenv()
+local _call7 = loadstring(game:HttpGet('https://raw.githubusercontent.com/PlockScripts/Library-ui/refs/heads/main/Redzhubui'))():MakeWindow({
+    SaveFolder = 'DesplockHub_v12',
+    SubTitle = 'by Plock4444',
+    Title = 'DesplockHub : Aimbot',
+})
+
+_call7:AddMinimizeButton({
+    Button = {
+        BackgroundTransparency = 0,
+        Image = 'rbxassetid://128390918606914',
+    },
+    Corner = {
+        CornerRadius = UDim.new(0, 6),
+    },
+})
+
+local _call13 = _call7:MakeTab({
+    [1] = 'Discord',
+    [2] = 'Info',
+})
+
+_call13:AddDiscordInvite({
+    Invite = 'https://discord.gg/ccmPVMBV7Q',
+    Description = 'Entre pra receber atualiza\u{e7}\u{f5}es sobre o script!',
+    Name = 'Desplock hub | Community',
+    Logo = 'rbxassetid://131723242350068',
+})
+_call7:Dialog({
+    Text = 'Entre no Discord pra saber sobre as atualiza\u{e7}\u{f5}es',
+    Title = 'Dialogo',
+    Options = {
+        [1] = {
+            [1] = 'ok',
+            [2] = function(_18, _18_2, _18_3, _18_4, _18_5) end,
+        },
+        [2] = {
+            [1] = 'Mais tarde',
+            [2] = function(_19, _19_2) end,
+        },
+        [3] = {
+            [1] = 'Cancelar',
+            [2] = function(_20) end,
+        },
+    },
+})
+
+local _call22 = _call7:MakeTab({
+    [1] = 'Aimbot',
+    [2] = 'User',
+})
+
+_call22:AddButton({
+    [1] = 'CamLock',
+    [2] = function(_25, _25_2, _25_3, _25_4, _25_5, _25_6)
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/PlockScripts/DesplockHub-Cod/refs/heads/main/Camlock.lua'))()
+        print('CamLock Load')
+    end,
+})
+_call22:AddSection({
+    [1] = 'Aimbot',
+})
+
+local _call34 = game:GetService('Players')
+local _call36 = game:GetService('RunService')
+local _LocalPlayer39 = _call34.LocalPlayer
+local _workspaceCurrentCamera40 = workspace.CurrentCamera
+
+game:GetService('UserInputService').InputBegan:Connect(function(_44, _44_2, _44_3) end)
+
+for _47, _47_2 in ipairs(_call34:GetPlayers())do
+    local _ = _47_2 == _LocalPlayer39
+end
+
+local _call51 = _call22:AddDropdown({
+    Callback = function(_52, _52_2, _52_3, _52_4, _52_5) end,
+    Name = 'Select Player',
+    Options = {
+        [1] = _47_2.Name,
+    },
+})
+
+_call22:AddButton({
+    Name = 'Refresh',
+    Callback = function(_55, _55_2, _55_3, _55_4)
+        for _58, _58_2 in ipairs(_call34:GetPlayers())do
+            local _ = _58_2 == _LocalPlayer39
+        end
+
+        _call51:Set({
+            [1] = _58_2.Name,
+        })
+    end,
+})
+
+local _call64 = _call22:AddToggle({
+    Callback = function(_65, _65_2, _65_3, _65_4)
+        _call36.RenderStepped:Connect(function(_69, _69_2, _69_3, _69_4)
+            local _call71 = _call34:FindFirstChild(_52)
+            local _ = _call71.Character
+            local _Character73 = _call71.Character
+            local _CFrame76 = _workspaceCurrentCamera40.CFrame
+
+            _workspaceCurrentCamera40.CFrame = _CFrame76:Lerp(CFrame.new(_workspaceCurrentCamera40.CFrame.Position, _Character73:FindFirstChild('Head').Position), 0.15)
+        end)
+    end,
+    Name = 'Aimbot Selected [G]',
+    Default = false,
+})
+
+fenv.Toggle_Selected = _call64
+
+local _call85 = _call22:AddToggle({
+    Callback = function(_86, _86_2) end,
+    Name = 'Aimbot Nearest [F]',
+    Default = false,
+})
+
+fenv.Toggle_Nearest = _call85
+
+_call22:AddToggle({
+    Callback = function(_89) end,
+    Name = 'Ignore Same Team',
+    Default = false,
+})
+_call22:AddSection({
+    [1] = 'ESP',
+})
+_call22:AddToggle({
+    Callback = function(_94, _94_2, _94_3, _94_4)
+        for _97, _97_2 in ipairs(_call34:GetPlayers())do
+            local _ = _97_2 == _LocalPlayer39
+            local _call101 = _97_2.CharacterAdded:Connect(function(_102, _102_2, _102_3)
+                local _call106 = _102:FindFirstChild('Head')
+                local _ = _97_2.Team
+                local _Color110 = _97_2.Team.TeamColor.Color
+                local _call112 = Instance.new('Highlight')
+
+                _call112.Adornee = _102
+                _call112.FillColor = _Color110
+                _call112.OutlineColor = _Color110
+                _call112.FillTransparency = 0.7
+                _call112.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                _call112.Parent = _102
+
+                local _call116 = Instance.new('BillboardGui')
+
+                _call116.Adornee = _call106
+                _call116.Size = UDim2.new(0, 200, 0, 40)
+                _call116.StudsOffset = Vector3.new(0, 3, 0)
+                _call116.AlwaysOnTop = true
+                _call116.Parent = _call106
+
+                local _call122 = Instance.new('TextLabel')
+
+                _call122.Size = UDim2.new(1, 0, 1, 0)
+                _call122.BackgroundTransparency = 1
+                _call122.TextColor3 = _Color110
+                _call122.TextStrokeTransparency = 0.5
+                _call122.Font = Enum.Font.GothamBold
+                _call122.TextSize = 14
+                _call122.Parent = _call116
+
+                _call36.Heartbeat:Connect(function()
+                    local _ = _LocalPlayer39.Character
+
+                    _LocalPlayer39.Character:FindFirstChild('HumanoidRootPart')
+
+                    local _142 = math.floor((_LocalPlayer39.Character.HumanoidRootPart.Position - _102:WaitForChild('HumanoidRootPart', 5).Position).Magnitude)
+
+                    _call122.Text = _97_2.Name .. ' [' .. _142 .. 'm]'
+                end)
+            end)
+            local _ = _97_2.Character
+            local _Character147 = _97_2.Character
+
+            _call112:Destroy()
+            _call116:Destroy()
+            _call101:Disconnect()
+
+            local _call157 = _Character147:FindFirstChild('Head')
+            local _ = _97_2.Team
+            local _Color161 = _97_2.Team.TeamColor.Color
+            local _call163 = Instance.new('Highlight')
+
+            _call163.Adornee = _Character147
+            _call163.FillColor = _Color161
+            _call163.OutlineColor = _Color161
+            _call163.FillTransparency = 0.7
+            _call163.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+            _call163.Parent = _Character147
+
+            local _call167 = Instance.new('BillboardGui')
+
+            _call167.Adornee = _call157
+            _call167.Size = UDim2.new(0, 200, 0, 40)
+            _call167.StudsOffset = Vector3.new(0, 3, 0)
+            _call167.AlwaysOnTop = true
+            _call167.Parent = _call157
+
+            local _call173 = Instance.new('TextLabel')
+
+            _call173.Size = UDim2.new(1, 0, 1, 0)
+            _call173.BackgroundTransparency = 1
+            _call173.TextColor3 = _Color161
+            _call173.TextStrokeTransparency = 0.5
+            _call173.Font = Enum.Font.GothamBold
+            _call173.TextSize = 14
+            _call173.Parent = _call167
+
+            _call36.Heartbeat:Connect(function()
+                local _ = _LocalPlayer39.Character
+
+                _LocalPlayer39.Character:FindFirstChild('HumanoidRootPart')
+
+                local _193 = math.floor((_LocalPlayer39.Character.HumanoidRootPart.Position - _Character147:WaitForChild('HumanoidRootPart', 5).Position).Magnitude)
+
+                _call173.Text = _97_2.Name .. ' [' .. _193 .. 'm]'
+            end)
+        end
+    end,
+    Name = 'ESP Players',
+    Default = false,
+})
+_call22:AddSection({
+    [1] = 'Aimbot skill',
+})
+
+local _202 = loadstring(game:HttpGet('https://raw.githubusercontent.com/PlockScripts/Aimbot-skill-config/refs/heads/main/Aimbot.lua'))()
+
+_call22:AddToggle({
+    Callback = function(_205, _205_2)
+        _202:Restore()
+    end,
+    Name = 'Aimbot Skill',
+    Default = false,
+})
+_call22:AddToggle({
+    Callback = function(_210)
+        _202:SetNPCSilentAim(false)
+        _202:SetPlayerSilentAim(_210)
+    end,
+    Name = 'Aimbot Players',
+    Default = false,
+})
+_call22:AddToggle({
+    Callback = function(_217)
+        _202:SetPlayerSilentAim(false)
+        _202:SetNPCSilentAim(_217)
+    end,
+    Name = 'Aimbot Mobs',
+    Default = false,
+})
+_call22:AddSection({
+    [1] = 'Speed and Jump',
+})
+
+local _LocalPlayer228 = game:GetService('Players').LocalPlayer
+local _ = _LocalPlayer228.Character
+local _call232 = _LocalPlayer228.Character:WaitForChild('Humanoid', 5)
+
+_call232.UseJumpPower = true
+
+_LocalPlayer228.CharacterAdded:Connect(function(_236, _236_2, _236_3, _236_4, _236_5)
+    local _call238 = _236:WaitForChild('Humanoid', 5)
+
+    _call238.UseJumpPower = true
+end)
+game:GetService('RunService').RenderStepped:Connect(function(_242, _242_2, _242_3, _242_4, _242_5)
+    _call238.UseJumpPower = true
+end)
+_call22:AddToggle({
+    Callback = function(_245, _245_2, _245_3, _245_4, _245_5)
+        _call238.UseJumpPower = true
+        _call238.WalkSpeed = 48
+    end,
+    Name = 'Enable Speed',
+    Default = false,
+})
+_call22:AddSlider({
+    Min = 1,
+    Name = 'Speed Value',
+    Max = 500,
+    Default = 48,
+    Callback = function(_248, _248_2, _248_3)
+        _call238.UseJumpPower = true
+        _call238.WalkSpeed = _248
+    end,
+    Increase = 1,
+})
+_call22:AddToggle({
+    Callback = function(_251, _251_2)
+        _call238.UseJumpPower = true
+        _call238.WalkSpeed = _248
+        _call238.JumpPower = 50
+    end,
+    Name = 'Enable Jump',
+    Default = false,
+})
+_call22:AddSlider({
+    Min = 10,
+    Name = 'Jump Value',
+    Max = 500,
+    Default = 50,
+    Callback = function(_254, _254_2, _254_3)
+        _call238.UseJumpPower = true
+        _call238.WalkSpeed = _248
+        _call238.JumpPower = _254
+    end,
+    Increase = 1,
+})
+
+local _call256 = _call7:MakeTab({
+    [1] = 'Settings',
+    [2] = 'Settings',
+})
+
+_call256:AddSection({
+    [1] = 'Auto Attack',
+})
+game:GetService('Workspace')
+
+local _call266 = game:GetService('ReplicatedStorage')
+
+game:GetService('VirtualInputManager')
+
+local _LocalPlayer269 = game:GetService('Players').LocalPlayer
+local _call271 = _call266:WaitForChild('Modules')
+local _call273 = _call271:WaitForChild('Net')
+
+_call273:WaitForChild('RE/RegisterAttack')
+_call273:WaitForChild('RE/RegisterHit')
+_call273:WaitForChild('RE/ShootGunEvent')
+_call266:WaitForChild('Remotes'):WaitForChild('Validator2')
+
+local _ = require(_call271.Flags).COMBAT_REMOTE_THREAD
+
+getupvalue(require(_call266.Controllers.CombatController).Attack, 9)
+
+local _G297 = getsenv(_LocalPlayer269:WaitForChild('PlayerScripts'):FindFirstChildOfClass('LocalScript'))._G
+local _ = _G297.SendHitsToServer
+
+game:GetService('RunService').Stepped:Connect(function(_302, _302_2, _302_3, _302_4, _302_5)
+    local _ = _LocalPlayer269.Character:FindFirstChild('Humanoid').Health
+
+    error('line 1: attempt to compare number < table')
+end)
+_call256:AddToggle({
+    Callback = function(_309, _309_2, _309_3, _309_4, _309_5, _309_6) end,
+    Name = 'AutoAttack',
+    Default = true,
+})
+_call256:AddToggle({
+    Callback = function(_312, _312_2, _312_3, _312_4) end,
+    Name = 'Attack Mobs',
+    Default = true,
+})
+_call256:AddToggle({
+    Callback = function(_315, _315_2, _315_3, _315_4, _315_5, _315_6) end,
+    Name = 'Attack Players',
+    Default = true,
+})
+_call256:AddSection({
+    [1] = 'Infinites',
+})
+_call256:AddToggle({
+    Callback = function(_320)
+        task.spawn(function(_323, _323_2)
+            task.wait(0.1)
+
+            local _Character324 = _LocalPlayer228.Character
+
+            _Character324:FindFirstChild('Energy')
+
+            local _Energy327 = _Character324.Energy
+
+            _Energy327.Value = _Character324.Energy.MaxValue
+
+            task.wait(0.1)
+
+            local _Character330 = _LocalPlayer228.Character
+
+            _Character330:FindFirstChild('Energy')
+
+            local _Energy333 = _Character330.Energy
+
+            _Energy333.Value = _Character330.Energy.MaxValue
+
+            task.wait(0.1)
+
+            local _Character336 = _LocalPlayer228.Character
+
+            _Character336:FindFirstChild('Energy')
+
+            local _Energy339 = _Character336.Energy
+
+            _Energy339.Value = _Character336.Energy.MaxValue
+
+            task.wait(0.1)
+
+            local _Character342 = _LocalPlayer228.Character
+
+            _Character342:FindFirstChild('Energy')
+
+            local _Energy345 = _Character342.Energy
+
+            _Energy345.Value = _Character342.Energy.MaxValue
+
+            task.wait(0.1)
+
+            local _Character348 = _LocalPlayer228.Character
+
+            _Character348:FindFirstChild('Energy')
+
+            local _Energy351 = _Character348.Energy
+
+            _Energy351.Value = _Character348.Energy.MaxValue
+
+            task.wait(0.1)
+
+            local _Character354 = _LocalPlayer228.Character
+
+            _Character354:FindFirstChild('Energy')
+
+            local _Energy357 = _Character354.Energy
+
+            _Energy357.Value = _Character354.Energy.MaxValue
+
+            task.wait(0.1)
+
+            local _Character360 = _LocalPlayer228.Character
+
+            _Character360:FindFirstChild('Energy')
+
+            local _Energy363 = _Character360.Energy
+
+            _Energy363.Value = _Character360.Energy.MaxValue
+
+            task.wait(0.1)
+
+            local _Character366 = _LocalPlayer228.Character
+
+            _Character366:FindFirstChild('Energy')
+
+            local _Energy369 = _Character366.Energy
+
+            _Energy369.Value = _Character366.Energy.MaxValue
+
+            task.wait(0.1)
+            error('internal 557: <25ms: infinitelooperror>')
+        end)
+    end,
+    Name = 'Infinite Stamina',
+    Default = false,
+})
+_call256:AddToggle({
+    Callback = function(_377, _377_2, _377_3, _377_4, _377_5) end,
+    Name = 'Infinite Jump',
+    Default = false,
+})
+game:GetService('UserInputService').JumpRequest:Connect(function(_381)
+    _LocalPlayer228.Character:FindFirstChildWhichIsA('Humanoid'):ChangeState('Jumping')
+end)
+_call256:AddSection({
+    [1] = 'trocar de time',
+})
+
+local _CommF_393 = game:GetService('ReplicatedStorage'):WaitForChild('Remotes').CommF_
+
+_call256:AddButton({
+    Name = '\26\26Time Pirata',
+    Callback = function(_396, _396_2)
+        _CommF_393:InvokeServer('SetTeam', 'Pirates')
+    end,
+})
+_call256:AddButton({
+    Name = '\26\26Time Marine',
+    Callback = function()
+        _CommF_393:InvokeServer('SetTeam', 'Marines')
+    end,
+})
+_call256:AddSection({
+    [1] = 'Walk on Water',
+})
+game:GetService('Players').LocalPlayer.CharacterAdded:Connect(function(_412) end)
+_call256:AddToggle({
+    Callback = function(_415, _415_2)
+        local _call417 = Instance.new('Part')
+
+        _call417.Name = 'InvisibleWaterPlatform'
+        _call417.Size = Vector3.new(300, 0.3, 300)
+        _call417.Anchored = true
+        _call417.CanCollide = true
+        _call417.Transparency = 1
+        _call417.Material = Enum.Material.Neon
+        _call417.TopSurface = Enum.SurfaceType.Smooth
+        _call417.BottomSurface = Enum.SurfaceType.Smooth
+        _call417.Parent = workspace
+
+        task.spawn(function(_428, _428_2, _428_3)
+            error('internal 557: <25ms: infinitelooperror>')
+        end)
+    end,
+    Name = 'Walk On Water',
+    Default = true,
+})
+_call256:AddSection({
+    [1] = 'Outros',
+})
+game:GetService('VirtualUser')
+_call256:AddToggle({
+    Callback = function(_436, _436_2, _436_3, _436_4, _436_5) end,
+    Name = 'Anti-AFK',
+    Default = true,
+})
+_call256:AddButton({
+    Name = 'FPS Boost',
+    Callback = function() end,
+})
+_call256:AddButton({
+    Name = 'Reset Player',
+    Callback = function(_442, _442_2, _442_3, _442_4, _442_5) end,
+})
+
+local _call444 = _call7:MakeTab({
+    [1] = 'Creditos',
+    [2] = 'external-link',
+})
+
+_call444:AddSection({
+    [1] = 'Creditos dos Criadores do script',
+})
+_call444:AddParagraph({
+    [1] = 'Developer Hub',
+    [2] = 'script by Plock4444 and team DesplockHub \26',
+})
+_call444:AddParagraph({
+    [1] = 'Status Hub',
+    [2] = 'script is up to date and working\26 \26\26\26\u{1f7e2}',
+})
+_call444:AddParagraph({
+    [1] = 'join our Discord group to receive updates\26 ',
+})
+_call444:AddParagraph({
+    [1] = 'colaboradores',
+    [2] = 'Araujo,Mauro,(criadores do antigo AutoAttack)',
+})
+_call444:AddParagraph({
+    [1] = 'Plock4444,criador do novo AutoAttack!',
+})
