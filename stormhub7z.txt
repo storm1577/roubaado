@@ -1,20 +1,14 @@
-local CatLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/realcath/lab/refs/heads/main/libary/catliby"))()
-
-local window = CatLib:CreateWindow({
-    Title = "kryzen hub",
-    Subtitle = "u.i By zerozxk",
-    Icon = "rbxassetid://121339025686432",
-    Size = UDim2.new(0, 500, 0, 300),
-    Theme = "Stormx",
-    ColorfulLetters = true,
-    FloatingButton = {
-        Enabled = true,
-        Icon = "rbxassetid://121339025686432",
-        Size = UDim2.new(0, 60, 0, 60),
-        Position = UDim2.new(0, 20, 0, 100),
-        Shape = "square"
-    }
-})
+local WindUI = (loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua")))();
+local Window = WindUI:CreateWindow({
+    Title = "ECLIPSE LIXO DEOBF BY ARAUJO",
+    Author = "By 1x1x1x1x1x1 And David Baszucki",
+    Folder = "Eclipse Lunar Gen4",
+    Size = UDim2.fromOffset(520, 300),
+    Transparent = true,
+    Theme = "Sky",
+    SideBarWidth = 190,
+    HasOutline = false,
+});
 Window:EditOpenButton({
     Title = "☄️Eclipse Hub☄️",
     CornerRadius = UDim.new(0, 10),
@@ -10371,4 +10365,3 @@ spawn(function()
 		end);
 	end;
 end);
-
