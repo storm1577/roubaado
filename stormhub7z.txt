@@ -1,7 +1,7 @@
 local WindUI = (loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua")))();
 local Window = WindUI:CreateWindow({
-    Title = "Ryzen Hub",
-    Author = "By skyward",
+    Title = "ECLIPSE LIXO DEOBF BY ARAUJO",
+    Author = "By 1x1x1x1x1x1 And David Baszucki",
     Folder = "Eclipse Lunar Gen4",
     Size = UDim2.fromOffset(520, 300),
     Transparent = true,
@@ -10,7 +10,7 @@ local Window = WindUI:CreateWindow({
     HasOutline = false,
 });
 Window:EditOpenButton({
-    Title = "Ryzen 🕸️",
+    Title = "☄️Eclipse Hub☄️",
     CornerRadius = UDim.new(0, 10),
     Draggable = false
 });
@@ -10365,5 +10365,3 @@ spawn(function()
 		end);
 	end;
 end);
-
-
