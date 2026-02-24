@@ -25,7 +25,122 @@ local Tabs = {
 		Title = "Main",
 		Icon = "house",
 		Desc = "Main Section"
+local Tabs = {
+	MainTab = window:CreateTab({
+		Name = "Main",
+		Title = "Main",
+		Subtitle = "Main Section",
+		Icon = "rbxassetid://0"
 	}),
+	OthersTab = window:CreateTab({
+		Name = "Others",
+		Title = "Others",
+		Subtitle = "Farming Section",
+		Icon = "rbxassetid://0"
+	}),
+	ItemsTab = window:CreateTab({
+		Name = "Items",
+		Title = "Items",
+		Subtitle = "Items Section",
+		Icon = "rbxassetid://0"
+	}),
+	FruitTab = window:CreateTab({
+		Name = "Fruit",
+		Title = "Fruit",
+		Subtitle = "Fruit Section",
+		Icon = "rbxassetid://0"
+	}),
+	RaidTab = window:CreateTab({
+		Name = "Raid",
+		Title = "Raid",
+		Subtitle = "Raid Section",
+		Icon = "rbxassetid://0"
+	}),
+	CombatTab = window:CreateTab({
+		Name = "Combat",
+		Title = "Combat",
+		Subtitle = "Combat Section",
+		Icon = "rbxassetid://0"
+	}),
+	RaceTab = window:CreateTab({
+		Name = "Race",
+		Title = "Race",
+		Subtitle = "Race Section",
+		Icon = "rbxassetid://0"
+	}),
+	DragonDojoTab = window:CreateTab({
+		Name = "Dragon Dojo",
+		Title = "Dragon Dojo",
+		Subtitle = "Dragon Dojo Section",
+		Icon = "rbxassetid://0"
+	}),
+	SeaEventTab = window:CreateTab({
+		Name = "Sea Event",
+		Title = "Sea Event",
+		Subtitle = "Sea Event Section",
+		Icon = "rbxassetid://0"
+	}),
+	SeaStackTab = window:CreateTab({
+		Name = "Sea Stack",
+		Title = "Sea Stack",
+		Subtitle = "Sea Stack Section",
+		Icon = "rbxassetid://0"
+	}),
+	EspTab = window:CreateTab({
+		Name = "Esp",
+		Title = "Esp",
+		Subtitle = "Esp Section",
+		Icon = "rbxassetid://0"
+	}),
+	TeleportTab = window:CreateTab({
+		Name = "Teleport",
+		Title = "Teleport",
+		Subtitle = "Teleport Section",
+		Icon = "rbxassetid://0"
+	}),
+	LocalPlayerTab = window:CreateTab({
+		Name = "Local Player",
+		Title = "Local Player",
+		Subtitle = "Local Player Section",
+		Icon = "rbxassetid://0"
+	}),
+	StatsTab = window:CreateTab({
+		Name = "Stats",
+		Title = "Stats",
+		Subtitle = "Stats Section",
+		Icon = "rbxassetid://0"
+	}),
+	SettingsTab = window:CreateTab({
+		Name = "Settings",
+		Title = "Settings",
+		Subtitle = "Settings Section",
+		Icon = "rbxassetid://0"
+	}),
+	SeaSettingsTab = window:CreateTab({
+		Name = "Sea Settings",
+		Title = "Sea Settings",
+		Subtitle = "Sea Settings Section",
+		Icon = "rbxassetid://0"
+	}),
+	MiscTab = window:CreateTab({
+		Name = "Misc",
+		Title = "Misc",
+		Subtitle = "Misc Section",
+		Icon = "rbxassetid://0"
+	}),
+	ServerTab = window:CreateTab({
+		Name = "Server",
+		Title = "Server",
+		Subtitle = "Server Section",
+		Icon = "rbxassetid://0"
+	}),
+	ShopTab = window:CreateTab({
+		Name = "Shop",
+		Title = "Shop",
+		Subtitle = "Shop Section",
+		Icon = "rbxassetid://0"
+	}),
+}	}),
 	OthersTab = Window:Tab({
 		Title = "Others",
 		Icon = "inbox",
@@ -50,73 +165,7 @@ local Tabs = {
 		Title = "Combat",
 		Icon = "sword",
 		Desc = "Combat Section"
-	}),
-	RaceTab = Window:Tab({
-		Title = "Race",
-		Icon = "bot",
-		Desc = "Race Section"
-	}),
-	DragonDojoTab = Window:Tab({
-		Title = "Dragon Dojo",
-		Icon = "shield",
-		Desc = "Dragon Dojo Section"
-	}),
-	SeaEventTab = Window:Tab({
-		Title = "Sea Event",
-		Icon = "anchor",
-		Desc = "Sea Event Section"
-	}),
-	SeaStackTab = Window:Tab({
-		Title = "Sea Stack",
-		Icon = "waves",
-		Desc = "Sea Stack Section"
-	}),
-	EspTab = Window:Tab({
-		Title = "Esp",
-		Icon = "scan-eye",
-		Desc = "Esp Section"
-	}),
-	TeleportTab = Window:Tab({
-		Title = "Teleport",
-		Icon = "map-pinned",
-		Desc = "Teleport Section"
-	}),
-	LocalPlayerTab = Window:Tab({
-		Title = "Local Player",
-		Icon = "user",
-		Desc = "Local Player Section"
-	}),
-	StatsTab = Window:Tab({
-		Title = "Stats",
-		Icon = "chart-no-axes-column",
-		Desc = "Stats Section"
-	}),
-	SettingsTab = Window:Tab({
-		Title = "Settings",
-		Icon = "settings",
-		Desc = "Settings Section"
-	}),
-	SeaSettingsTab = Window:Tab({
-		Title = "Sea Settings",
-		Icon = "cog",
-		Desc = "Sea Settings Section"
-	}),
-	MiscTab = Window:Tab({
-		Title = "Misc",
-		Icon = "layout-grid",
-		Desc = "Misc Section"
-	}),
-	ServerTab = Window:Tab({
-		Title = "Server",
-		Icon = "server",
-		Desc = "Server Section"
-	}),
-	ShopTab = Window:Tab({
-		Title = "Shop",
-		Icon = "shopping-cart",
-		Desc = "Shop Section"
-	}),
-};
+
 Window:SelectTab(1);
 _G.Settings = {
 	Main = {
@@ -10371,5 +10420,6 @@ spawn(function()
 		end);
 	end;
 end);
+
 
 
